@@ -44,9 +44,9 @@ public class TrackerService {
 					track.setLongitude(bean.getLongitude());
 				}
 				
-			}		
+		}		
 			return dao.add(track);
-		}
+	}
 	
 
 	public void delete(String trackId) {
@@ -56,8 +56,6 @@ public class TrackerService {
 	public Tracker getByTrackId(String trackId) {
 		
 		return dao.getByTrackId(trackId);
-	}
-
-	
+	}	
 
 }

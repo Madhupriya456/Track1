@@ -1,6 +1,5 @@
 package com.wenable.priya.beans;
 
-
 import java.time.LocalDateTime;
 
 
@@ -12,7 +11,6 @@ public class Tracker {
 	private String latitude;
 	private String longitude;	
 	private String place;
-	
 	private String time;
 	
 	public String getLatitude() {

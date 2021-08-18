@@ -1,23 +1,14 @@
 package com.wenable.priya.services;
 
-
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-
 import com.wenable.priya.beans.User;
 import com.wenable.priya.dao.UserDao;
 import com.wenable.priya.repositories.UserRepository;
 
-
 @Service
-public class UserService implements UserDetailsService {
+public class UserService  {
 
     @Autowired
     UserDao dao;
@@ -51,25 +42,19 @@ public class UserService implements UserDetailsService {
 		return dao.getAll();
 	}
     
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    	User user=repo.findByUsername(username);
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
-
-    }
-
-	public User addUserToTrackId(String id, User bean) {
-			User user=getById(id);
-			if(user.getTrackId()!=null)
-			{
-				System.out.println("trackid already exist");
-			}
-			else
-			{
-				user.setTrackId(bean.getTrackId());
-			}
-			return dao.add(user);
+	public User addUserToTrackId(String id, User bean) 
+	{
+	   User user=getById(id);
+	   if(user.getTrackId()!=null)
+		{
+			System.out.println("trackid already exist");
 		}
+		else
+		{
+			user.setTrackId(bean.getTrackId());
+		}
+			return dao.add(user);
+	}
 
 	public User getById(String id) {		
 		return dao.getById(id);
@@ -84,5 +69,21 @@ public class UserService implements UserDetailsService {
 		dao.deleteById(id);	
 	}
 
+	public User update(String id, User bean) {
+		User user=getById(id);
+		if(user!=null)
+		{
+			if(bean.getPassword()!=null)
+			{
+				user.setPassword(bean.getPassword());
+			}
+			if(bean.getMobileno()!=null)
+			{
+				user.setMobileno(bean.getMobileno());
+			}
+		}
+		return dao.add(user);
+		
+	}
 	
 }

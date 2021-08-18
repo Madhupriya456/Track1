@@ -39,7 +39,5 @@ public class TrackerDaoImpl implements TrackerDao{
 	public Tracker getByTrackId(String trackId) {
 		return repo.findById(trackId).orElse(null);
 	}
-	
-	
-   
+	  
 }

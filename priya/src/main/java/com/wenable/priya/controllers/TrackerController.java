@@ -16,7 +16,6 @@ import com.wenable.priya.beans.Tracker;
 import com.wenable.priya.services.TrackerService;
 
 @RestController
-
 public class TrackerController {
 	
 	@Autowired

@@ -14,8 +14,9 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.wenable.priya.dao.impl.UserDaoImpl;
 import com.wenable.priya.filter.AuthFilter;
-import com.wenable.priya.services.UserService;
+
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +24,7 @@ import com.wenable.priya.services.UserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-    private UserService service;
+    private UserDaoImpl impl;
 
     @Autowired
     private AuthFilter filter;
@@ -42,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(service);
+        auth.userDetailsService(impl);
     }
    
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)

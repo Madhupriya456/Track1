@@ -18,6 +18,4 @@ public interface UserDao {
 
 	void deleteById(String id);
 
-	
-
 }
